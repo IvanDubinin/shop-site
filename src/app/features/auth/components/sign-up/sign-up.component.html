@@ -1,0 +1,50 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <mat-form-field class="inputsContainer" appearance="standard">
+    <mat-label>First Name</mat-label>
+    <input type="text" matInput formControlName="firstName">
+    <mat-error *ngIf="firstName.touched && firstName.hasError('required')">First Name is required</mat-error>
+    <mat-error *ngIf="firstName.touched && firstName.hasError('pattern')">Only Latin characters</mat-error>
+    <mat-error *ngIf="firstName.touched && firstName.hasError('minlength')">First Name should be at least 2 characters</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="inputsContainer" appearance="standard">
+    <mat-label>Last Name</mat-label>
+    <input type="text" matInput formControlName="lastName">
+    <mat-error *ngIf="lastName.touched && lastName.hasError('required')">Last Name is required</mat-error>
+    <mat-error *ngIf="lastName.touched && lastName.hasError('pattern')">Only Latin characters</mat-error>
+    <mat-error *ngIf="lastName.touched && lastName.hasError('minlength')">Last Name should be at least 2 characters</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="inputsContainer" appearance="standard">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput placeholder="pat@example.com" formControlName="email">
+    <mat-error *ngIf="email.touched && email.hasError('required')">Email is required</mat-error>
+    <mat-error *ngIf="email.touched && email.hasError('email')">Email must be valid</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="inputsContainer" appearance="standard">
+    <mat-label>Password</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+    <button mat-icon-button matSuffix (click)="changePasswordVisibility($event)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-error *ngIf="password.touched && password.hasError('required')">Password is required</mat-error>
+    <mat-error *ngIf="password.touched && password.hasError('pattern')">Password should be at least 8 characters including a number, an uppercase and a lowercase letters, and a special character.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="inputsContainer" appearance="standard">
+    <mat-label>Confirm Password</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'" formControlName="confirmPassword">
+    <button mat-icon-button matSuffix (click)="changePasswordVisibility($event)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-error  class="notMatchingError" *ngIf="confirmPassword.touched && form.hasError('passwordsNotMatching')">
+    <small>Passwords are not matching</small>
+  </mat-error>
+  <mat-hint *ngIf="!form.valid"><small>Please fill out all needed information</small></mat-hint>
+  <button mat-flat-button type="submit" class="modalWindowButton" color="primary" [disabled]="!form.valid">Sign Up</button>
+
+</form>

@@ -1,0 +1,27 @@
+<div class='title'>
+  <p *ngIf='!isEditMode' class='title__view'>{{wishlist.name}}</p>
+  <form
+    class='title__form' [formGroup]='form' *ngIf='isEditMode'
+    (ngSubmit)='onEndEditWishlist()'
+    (click)='$event.stopPropagation()'
+    (keydown)='$event.stopPropagation()'
+    (blur)='onBlur($event)'
+  >
+    <mat-form-field class='title__input'>
+      <input
+        matInput
+        type='text'
+        [value]='wishlist.name'
+        formControlName='name'
+        (blur)='onBlur($event)'
+        autofocus
+      />
+    </mat-form-field>
+  </form>
+</div>
+<button mat-icon-button (click)='onEditWishlist()'>
+  <mat-icon>edit</mat-icon>
+</button>
+<button mat-icon-button *ngIf='!wishlist.isDefault' (click)='onDeleteWishlist()'>
+  <mat-icon>delete</mat-icon>
+</button>

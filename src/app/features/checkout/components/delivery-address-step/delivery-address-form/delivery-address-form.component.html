@@ -1,0 +1,55 @@
+<form [formGroup]="addressForm" (ngSubmit)="submit()">
+    <div class="input-container input-container_two-inputs">
+        <mat-form-field type="text" appearance="standard" class="input input_width-45">
+            <mat-label>country</mat-label>
+            <input [matAutocomplete]="countryACMP" formControlName="country"
+                (blur)="pickCountryObjectByName(); uploadCity()" matInput placeholder="Country name">
+            <mat-autocomplete #countryACMP="matAutocomplete">
+                <mat-option *ngFor="let country of countryOptions$ | async" [value]="country.name">
+                    {{country.name}}
+                </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="isDirtyTouchedOrErrors(controls['country'])">please, choose country from list of type it
+                by hand</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="input input_width-45">
+            <mat-label>city</mat-label>
+            <input type="text" [matAutocomplete]="cityACMP"
+                (focus)="controls['city']?.setValue(controls['city']?.value || '')" formControlName="city" matInput
+                [readonly]="isCityReadOnly" [placeholder]="isCityReadOnly ?'fill country first':'choose a city'">
+            <mat-autocomplete #cityACMP="matAutocomplete">
+                <mat-option *ngFor="let city of cityOptions$ | async" [value]="city">
+                    {{city}}
+                </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="isDirtyTouchedOrErrors(controls['city'])">please, choose city from list of type it by hand
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <mat-form-field appearance="standard" class="input input_full-width">
+        <mat-label>street</mat-label>
+        <input matInput formControlName="street">
+        <mat-error *ngIf="isDirtyTouchedOrErrors(controls['street'])">minimum length is 2 characters</mat-error>
+    </mat-form-field>
+    <div class="input-container input-container_two-inputs">
+        <mat-form-field appearance="standard" class="input input_width-45">
+            <mat-label>building</mat-label>
+            <input type="number" matInput formControlName="building">
+            <mat-error *ngIf="isDirtyTouchedOrErrors(controls['building'])">minimum length is 2 digits</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="input input_width-45">
+            <mat-label>flat</mat-label>
+            <input type="number" matInput formControlName="flat">
+            <mat-error *ngIf="isDirtyTouchedOrErrors(controls['flat'])">minimum length is 2 digits</mat-error>
+        </mat-form-field>
+    </div>
+    <mat-form-field type="text" appearance="standard" class="input input_full-width">
+        <mat-label>zip</mat-label>
+        <input matInput formControlName="zip">
+        <mat-error *ngIf="isDirtyTouchedOrErrors(controls['zip'])">
+            minimum length is 6 characters
+        </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" [disabled]="addressForm.invalid" type="submit"
+        class="proceed-button">proceed</button>
+</form>

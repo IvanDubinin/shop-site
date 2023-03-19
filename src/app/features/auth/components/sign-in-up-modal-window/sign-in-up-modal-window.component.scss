@@ -1,0 +1,16 @@
+.modalContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.closeButton {
+  align-self: end;
+}
+
+mat-tab {
+  height: 100%;
+}
+
+mat-slide-toggle {
+  margin: 1rem 0 0.5rem 1.5rem;
+}

@@ -1,0 +1,42 @@
+<mat-card>
+  <div ngClass="mat-card__container">
+    <div class='mat-card__favorite'>
+      <button *ngIf='isFavorite' mat-icon-button (click)='onFavoriteClick()'>
+        <span class='material-icons' style='color: rgb(239, 48, 48)'>favorite</span>
+      </button>
+    </div>
+    <div ngClass="mat-card__img-container">
+      <img ngClass="mat-card__img" [src]="product.images[0]" [alt]="product.name + ' photo'" />
+    </div>
+
+    <div>
+      <mat-card-title><a ngClass="mat-card-title__link" [title]="'click to view ' + product.name + ' page'"
+          [routerLink]="['/home/products/', product.id]"><span>{{ product.name }}</span></a>
+      </mat-card-title>
+      <mat-card-content ngClass="mat-card-content mat-card-content_theme-description">
+        {{ product.categoryName }}
+
+        <span ngClass="mat-card__span mat-card__span_theme-date">
+          Created: {{ product.createdAt | date: 'd.MM.yyyy' }}
+        </span>
+        <span ngClass="mat-card__span mat-card__span_theme-date">
+          Updated: {{ product.updatedAt | date: 'd.MM.yyyy' }}
+        </span>
+        <rating-stars [isActive]="false" ngClass="rating" [rating]="rating"></rating-stars>
+      </mat-card-content>
+    </div>
+  </div>
+
+  <mat-card-actions>
+    <div ngClass="price-container">
+      <div *ngIf="discountPercentage" ngClass="percentage">{{ discountPercentage }}%</div>
+      <mat-card-content ngClass="mat-card__span discount-price">
+        {{ product.discountPrice | currency: 'USD':'symbol':'0.1-1' | customCurrency }}
+        <s ngClass="mat-card__span base-price">
+          {{ product.price | currency: 'USD':'symbol':'0.1-1' | customCurrency }}
+        </s>
+      </mat-card-content>
+    </div>
+    <app-add-to-cart [product]="product"></app-add-to-cart>
+  </mat-card-actions>
+</mat-card>

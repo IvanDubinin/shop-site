@@ -1,0 +1,24 @@
+.block__user {
+  padding: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.user__name {
+  line-height: 30px;
+}
+
+.user__image {
+  height: 24px;
+  width: 24px;
+  margin: auto 0;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}

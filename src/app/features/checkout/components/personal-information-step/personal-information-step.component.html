@@ -1,0 +1,38 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form" class="personal-information-form-container">
+  <mat-form-field appearance="standard" class="title-input">
+    <mat-label>Title</mat-label>
+    <mat-select formControlName="title" required="false">
+      <mat-option value="Mr.">Mr.</mat-option>
+      <mat-option value="Mrs.">Mrs.</mat-option>
+      <mat-option value="Ms.">Ms.</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="names-container">
+    <mat-form-field appearance="standard" class="name-input">
+      <mat-label>Name</mat-label>
+      <input type="text" matInput formControlName="firstName"/>
+      <mat-error *ngIf="firstName.touched && firstName.hasError('minlength')">
+        First Name should be at least 2 characters
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="standard" class="name-input">
+      <mat-label>Surname</mat-label>
+      <input type="text" matInput formControlName="lastName"/>
+      <mat-error *ngIf="lastName.touched && lastName.hasError('minlength')">
+        Last Name should be at least 2 characters
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <mat-form-field appearance="standard" class="phone_input">
+    <mat-label>Phone</mat-label>
+    <input type="tel" matInput mask="+X (XXX) XXX XX XX" formControlName="phone"/>
+    <mat-error *ngIf="phone.touched && phone.hasError('pattern')">Phone Number must be valid</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="standard">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput formControlName="email" class="phone_input">
+    <mat-error *ngIf="email.touched && email.hasError('email')">Email must be valid</mat-error>
+  </mat-form-field>
+  <button mat-flat-button color="primary" type="submit" class="proceed-btn" [disabled]="form.invalid">Proceed</button>
+</form>
+

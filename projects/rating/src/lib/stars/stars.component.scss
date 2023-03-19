@@ -1,0 +1,72 @@
+@use "sass:selector";
+$star-container-side: 15px;
+$star-color: orange;
+$no-fill-color: white;
+$stroke-color: grey;
+$stroke-no-fill-color: $star-color;
+$star-sides-padding: 5px;
+
+:host {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  pointer-events: none;
+
+  &:hover:not(.passive) div polygon {
+    fill: $star-color !important;
+    stroke: $star-color !important;
+  }
+}
+
+.star-container {
+  width: $star-container-side;
+  height: $star-container-side;
+  pointer-events: all;
+  padding: 0 $star-sides-padding;
+
+  &:hover:not(.passive) ~ div polygon {
+    fill: $no-fill-color !important;
+    stroke: $stroke-color !important;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.stroke {
+  stroke-width: 15px;
+  stroke: $stroke-color;
+
+  &_no-stroke {
+    stroke: $star-color;
+  }
+}
+
+.polygon {
+  &_no-fill {
+    fill: $no-fill-color;
+  }
+
+  &_filled {
+    fill: $star-color;
+  }
+}
+
+.stop-color {
+  stop-color: $star-color;
+
+  &_default {
+    stop-color: $no-fill-color;
+  }
+}
+
+.stroke-stop-color {
+  stop-color: $stroke-no-fill-color;
+
+  &_filled {
+    stop-color: $stroke-color;
+  }
+}

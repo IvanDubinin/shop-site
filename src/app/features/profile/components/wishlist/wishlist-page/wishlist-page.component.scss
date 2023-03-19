@@ -1,0 +1,32 @@
+@mixin flex-sb {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mat-card {
+  background-color: transparent;
+}
+
+.some-text {
+  font-size: 20px;
+  text-align: center;
+  margin: 30px;
+}
+
+.header {
+  width: 100%;
+}
+
+.mat-expansion-panel {
+  background-color: #fafafa;
+}
+
+.container {
+  width: 100%;
+  border-radius: 4px;
+  padding: 1em 0;
+}
+
+.no-products {
+  margin: 0;
+}

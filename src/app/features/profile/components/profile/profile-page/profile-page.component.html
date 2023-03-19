@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="page-info-container">
+    <app-breadcrumb></app-breadcrumb>
+    <h1 class="title">{{title}}</h1>
+  </div>
+  <div class="content-container">
+    <mat-card class="side-nav">
+      <ul class="nav-menu">
+        <li class="menu-item">
+          <mat-icon class="icon">home</mat-icon>
+          <a class="nav-link" mat-button routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+            true}" routerLink="/home/profile"> My Profile</a>
+        </li>
+        <li class="menu-item">
+          <mat-icon class="icon">favorite</mat-icon>
+          <a class="nav-link" mat-button routerLinkActive="active" routerLink="/home/profile/wishlist"> My wishlist</a>
+        </li>
+        <li class="menu-item">
+          <mat-icon class="icon">inventory</mat-icon><a class="nav-link" mat-button routerLinkActive="active"
+            routerLink="/home/profile/orders"> My orders</a>
+        </li>
+        <li class="menu-item">
+          <mat-icon class="icon"> import_contacts</mat-icon><a class="nav-link" mat-button routerLinkActive="active"
+            routerLink="/home/profile/address-book"> My address book</a>
+        </li>
+      </ul>
+    </mat-card>
+    <mat-card class="outlet-container">
+      <router-outlet></router-outlet>
+    </mat-card>
+  </div>
+</div>

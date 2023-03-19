@@ -1,0 +1,28 @@
+<form ngClass="order-filter-form">
+
+  <app-drop-down [label]="'Filter by Status'" [defaultOption]="ordersForDropDown[0].viewValue"
+    [options]="ordersForDropDown" (selectedValue)="onStatusChanged($event)" [filtersAreReseted]="filtersAreReseted">
+  </app-drop-down>
+
+  <app-drop-down [label]="'Filter by Date'" [defaultOption]="yearsForDropDown[0].viewValue" [options]="yearsForDropDown"
+    (selectedValue)="onYearChanged($event)" [filtersAreReseted]="filtersAreReseted">
+  </app-drop-down>
+</form>
+
+<div *ngIf="filteredOrders.length; else noOrders">
+  <div ngClass="order-container">
+    <app-order-list-item [order]="filteredOrders[0]" [expanded]="true">
+    </app-order-list-item>
+  </div>
+  <div *ngFor="let order of filteredOrders.slice(1)" ngClass="order-container">
+    <app-order-list-item [order]="order">
+    </app-order-list-item>
+  </div>
+</div>
+
+<ng-template #noOrders>
+  <div ngClass="orders-not-found" *ngIf="ordersLoaded">
+    <div>Orders Not Found</div>
+    <button mat-stroked-button (click)="resetFilters()">Reset Filters</button>
+  </div>
+</ng-template>

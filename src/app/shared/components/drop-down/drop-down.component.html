@@ -1,0 +1,9 @@
+<mat-form-field [style.width.%]="100" appearance="fill">
+  <mat-label>{{ label }}</mat-label>
+  <mat-select [(ngModel)]="defaultOption" disableRipple (selectionChange)="selectOption(select.value)" #select
+    [value]="defaultOption">
+    <mat-option *ngFor="let option of options" [value]="option.value">
+      {{ option.viewValue }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

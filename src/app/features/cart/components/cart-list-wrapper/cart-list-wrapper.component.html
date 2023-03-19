@@ -1,0 +1,6 @@
+<ng-container *ngIf="mapOfProducts">
+  <div *ngFor="let element of mapOfProducts | keyvalue: addingDateDescOrder">
+    <app-cart-list [products]="element.value.products" [sellerName]="element.key">
+    </app-cart-list>
+  </div>
+</ng-container>

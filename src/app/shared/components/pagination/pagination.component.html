@@ -1,0 +1,32 @@
+<ul class="pagination">
+  <li>
+    <a
+      class="arrow controls"
+      href="#"
+      (click)="onPrevPage($event)"
+      [ngClass]="{ 'arrow-disabled': isFirstPage() }"
+    >
+      <
+    </a>
+  </li>
+  <li *ngFor="let page of pages">
+    <a
+      class="controls"
+      (click)="onPageChanged($event)"
+      [ngClass]="{ current: currentPage === page.label, pointer: page.label !== '...' }"
+    >
+      <span>{{ page.label }}</span>
+    </a>
+  </li>
+
+  <li>
+    <a
+      class="arrow controls"
+      href="#"
+      (click)="onNextPage($event)"
+      [ngClass]="{ 'arrow-disabled': isLastPage() }"
+    >
+      >
+    </a>
+  </li>
+</ul>

@@ -1,0 +1,42 @@
+{
+  "customSyntax": "postcss-scss",
+  "extends": ["stylelint-config-standard"],
+  "ignoreFiles": ["public/**/*"],
+  "rules": {
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "use",
+          "forward",
+          "import",
+          "mixin",
+          "function",
+          "extend",
+          "at-root",
+          "error",
+          "warn",
+          "debug",
+          "each",
+          "while",
+          "include",
+          "if",
+          "else",
+          "for",
+          "media",
+          "supports",
+          "keyframes"
+        ]
+      }
+    ],
+    "no-empty-source": null,
+    "selector-type-no-unknown": null,
+    "selector-class-pattern": null,
+    "selector-pseudo-element-no-unknown": [
+      true,
+      {
+        "ignorePseudoElements": ["ng-deep"]
+      }
+    ]
+  }
+}

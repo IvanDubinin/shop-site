@@ -1,0 +1,9 @@
+<swiper
+  [config]="config"
+>
+  <ng-template *ngFor="let image of arrayOfImages" swiperSlide>
+    <div>
+      <img src="{{image}}"/>
+    </div>
+  </ng-template>
+</swiper>

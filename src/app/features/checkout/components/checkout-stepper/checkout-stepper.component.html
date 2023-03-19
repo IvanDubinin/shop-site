@@ -1,0 +1,62 @@
+<mat-accordion class="example-headers-align">
+  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" [hideToggle]="lastUnblockedStep > 0 && !personalInfoStep.expanded" #personalInfoStep *ngIf="!user">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon class="header-icon">contact_page</mat-icon>
+        Personal Information
+      </mat-panel-title>
+      <mat-panel-description *ngIf="personalInfo">
+        {{personalInfo.title}} {{personalInfo?.firstName}} {{personalInfo?.lastName}} <br>
+        +{{personalInfo.phone}}
+      </mat-panel-description>
+      <mat-icon *ngIf="lastUnblockedStep > 0 && !personalInfoStep.expanded" class="edit-button">edit</mat-icon>
+    </mat-expansion-panel-header>
+    <app-personal-information-step (personalFormValue)="handlePersonalInformation($event)"></app-personal-information-step>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 1"  [disabled]="lastUnblockedStep <= 0" (opened)="setStep(1)" [hideToggle]="lastUnblockedStep > 1 && !addressStep.expanded" #addressStep>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon class="header-icon">local_shipping</mat-icon>
+        Delivery Address
+      </mat-panel-title>
+      <mat-panel-description *ngIf="addressInfo">
+        <div>
+          {{personalInfo.title}} {{personalInfo?.firstName}} {{personalInfo?.lastName}} <br>
+          {{addressInfo?.country}}, {{addressInfo?.city}} <br>
+          {{addressInfo?.street}}, {{addressInfo?.building}} - {{addressInfo?.flat}} <br>
+          {{addressInfo?.zip}}
+        </div>
+      </mat-panel-description>
+      <mat-icon *ngIf="lastUnblockedStep > 1 && !addressStep.expanded" class="edit-button">edit</mat-icon>
+    </mat-expansion-panel-header>
+    <app-delivery-address-step (deliveryAddressConfirmed)="handleAddressInformation($event)"></app-delivery-address-step>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 2" [disabled]="lastUnblockedStep <= 1" (opened)="setStep(2)" [hideToggle]="lastUnblockedStep > 2 && !paymentStep.expanded" #paymentStep>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon class="header-icon">payments</mat-icon>
+        Payment information
+      </mat-panel-title>
+      <mat-icon *ngIf="lastUnblockedStep> 2 && !paymentStep.expanded" class="edit-button">edit</mat-icon>
+    </mat-expansion-panel-header>
+    <app-payment-information-step [orderPrice]="orderPrice" (paymentFormValue)="handlePayment($event)"></app-payment-information-step>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 3" [disabled]="lastUnblockedStep <= 2" (opened)="setStep(3)">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon class="header-icon">check</mat-icon>
+        Order confirmation
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div>Thank you!
+      The order has been successfully paid.
+      Navigate to the Orders page to view the details.</div>
+    <mat-action-row>
+      <button mat-flat-button color="primary" routerLink="/home/profile/orders" class="proceed-btn">Go to Orders page</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+</mat-accordion>

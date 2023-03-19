@@ -1,0 +1,34 @@
+<mat-toolbar color="primary">
+  <div class="container">
+    <div class="left-side">
+      <div class="burger">
+        <button mat-icon-button (click)="toggleMenu()">
+          <mat-icon>{{ isMenuOpen ? 'close' : 'menu' }}</mat-icon>
+        </button>
+      </div>
+      <div class="logo">
+        <span class="material-icons">pets</span>
+        <span>Born2Die</span>
+      </div>
+      <div class="nav-items" [class.is-open]="isMenuOpen">
+        <a mat-button routerLink="/home" class="nav-item" (click)="toggleMenu()">Home</a>
+        <a mat-button routerLink="/home/products" [queryParams]="_defaultPlpQueryParams" class="nav-item"
+          (click)="toggleMenu()">Products</a>
+      </div>
+    </div>
+    <div class="right-side">
+      <span class="spacer"></span>
+      <button mat-icon-button routerLink="/home/cart">
+        <mat-icon [matBadge]="this.cartService.getQuantity()" matBadgeColor="warn"
+          [matBadgeHidden]="this.cartService.getQuantity() === 0">shopping_basket</mat-icon>
+      </button>
+      <div *ngIf="!user">
+        <button mat-stroked-button class="signInButton" (click)="openDialog()">Sign in</button>
+      </div>
+      <div *ngIf="user" class="user-icon-header">
+        <app-upload-image [user]="user" [matMenuTriggerFor]="profileMenu.menu"></app-upload-image>
+      </div>
+      <app-drop-down-menu #profileMenu></app-drop-down-menu>
+    </div>
+  </div>
+</mat-toolbar>

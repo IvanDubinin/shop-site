@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  margin-right: auto;
+  width: 100%;
+  padding-right: 1em;
+}
+
+.title__view {
+  margin: 0;
+}
+
+.title__input {
+  width: 100%;
+}

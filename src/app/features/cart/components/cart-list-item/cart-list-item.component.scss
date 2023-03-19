@@ -1,0 +1,288 @@
+@media screen and(max-width: 768px) {
+  .cart_item {
+    margin-bottom: 1.5vh;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .mat-card {
+    width: 200px;
+    height: 260px;
+    display: flex;
+    flex-direction: column;
+    padding: 0.6rem 0.3rem;
+  }
+
+  .img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85px;
+    height: 85px;
+    margin: 0 auto;
+  }
+
+  .img img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .title {
+    width: 100%;
+    display: flex;
+    margin-top: 10%;
+    justify-content: center;
+    font: 500 1rem Roboto, "Helvetica Neue", sans-serif;
+    color: rgb(41 103 196);
+  }
+
+  .discount-price {
+    width: 100%;
+    margin-top: 5%;
+    display: flex;
+    font-size: 1.2rem;
+    justify-content: center;
+    color: rgb(41 103 196);
+  }
+
+  .base-price {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    color: rgb(178 177 177);
+  }
+
+  .mat-card-title__link {
+    text-decoration: none;
+  }
+
+  .mat-card-content {
+    display: flex;
+    font-size: 20px;
+    color: grey;
+    width: 100%;
+    margin: 0;
+    flex-direction: column;
+    padding: 5%;
+    box-sizing: border-box;
+    height: 220px;
+  }
+
+  .mat-card-actions {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    flex-direction: column;
+    box-sizing: border-box;
+
+    .quantity {
+      display: flex;
+      width: 80%;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .mat-button {
+      min-width: 38px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: rgb(44 119 231);
+      color: white;
+    }
+
+    .product__amount {
+      display: inline-block;
+      width: 50px;
+      text-align: center;
+    }
+  }
+
+  .icon_large_screen {
+    display: none;
+  }
+
+  .icon_small_screen {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 10%;
+    color: rgb(94 93 93);
+    margin-left: 0.7rem;
+  }
+
+  .mat-icon {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .mat-checkbox {
+    display: flex;
+    width: 10%;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .cart_item {
+    min-width: 960px;
+    height: 100px;
+    margin-bottom: 1.5vh;
+    justify-content: flex-start;
+    display: flex;
+  }
+
+  .mat_container {
+    width: 900px;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .mat-card {
+    width: 95%;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .img {
+    position: relative;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+  }
+
+  .mat-card-title__link {
+    text-decoration: none;
+  }
+
+  .img img {
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+  }
+
+  .title {
+    display: flex;
+    width: 40%;
+    justify-content: center;
+    align-items: center;
+    font: 500 1.1rem Roboto, "Helvetica Neue", sans-serif;
+    color: rgb(41 103 196);
+  }
+
+  .discount-price {
+    color: rgb(41 103 196);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 21%;
+    font: 400 1.3rem Roboto, "Helvetica Neue", sans-serif;
+  }
+
+  .base-price {
+    width: 19%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 1.1rem;
+    color: rgb(178 177 177);
+  }
+
+  p {
+    margin: 0;
+  }
+
+  mat-card-content {
+    display: flex;
+    font-size: 20px;
+    color: grey;
+    width: 80%;
+    margin: 0;
+  }
+
+  mat-card-actions {
+    display: flex;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  .quantity {
+    display: flex;
+    width: 60%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  button {
+    background-color: rgb(44 119 231);
+    color: white;
+  }
+
+  .mat-button {
+    min-width: 47px;
+  }
+
+  .product__amount {
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+  }
+
+  .mat-icon {
+    display: flex;
+    cursor: pointer;
+    color: rgb(94 93 93);
+  }
+
+  .icon_large_screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5%;
+    margin-right: 1.1rem;
+  }
+
+  .icon_small_screen {
+    display: none;
+  }
+
+  .mat-checkbox {
+    width: 3%;
+    display: flex;
+  }
+}
+
+.percentage {
+  position: absolute;
+  padding: 0.2rem 0.5rem;
+  border: 3px solid white;
+  border-radius: 1rem;
+  background-color: rgb(187 60 60);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 500;
+  z-index: 5;
+
+  @media screen and (min-width: 770px) {
+    top: 0.2rem;
+    right: 0.2rem;
+  }
+
+  @media screen and (max-width: 769px) {
+    left: 0.4rem;
+    top: 4rem;
+  }
+}

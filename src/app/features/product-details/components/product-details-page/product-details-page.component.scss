@@ -1,0 +1,273 @@
+$mat-card-margin: 2px;
+$slider-container-height: 400px;
+$headers-font-size: 24px;
+$user-wrapper-width: 170px;
+
+@mixin flex-r-nw {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+@mixin grey-paragraph {
+  font-size: 14px;
+  color: grey;
+}
+
+.error-message {
+  width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: auto;
+
+  &__image {
+    height: 500px;
+    width: 500px;
+    background: 100% center/cover url("../../../../../assets/images/404.svg");
+  }
+
+  &__text {
+    font-size: 32px;
+    color: grey;
+    text-align: left;
+  }
+}
+
+:host {
+  width: 90%;
+  max-width: 1000px;
+  margin: 2vh auto 0;
+  display: block;
+  min-height: 100%;
+}
+
+.page-wrapper {
+  margin-bottom: 5vh;
+}
+
+.slider-container {
+  position: relative;
+  box-sizing: border-box;
+  height: $slider-container-height;
+
+  @include flex-r-nw;
+
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: $mat-card-margin;
+
+  &__slider-wrapper {
+    position: relative;
+    z-index: 1;
+    width: calc(100% - #{$mat-card-margin} - #{$user-wrapper-width});
+    margin-right: $mat-card-margin;
+  }
+
+  &__user-wrapper {
+    box-sizing: border-box;
+    text-align: center;
+    width: $user-wrapper-width;
+
+    & button {
+      text-transform: uppercase;
+    }
+  }
+}
+
+.paragraph-container {
+  width: 100%;
+
+  @include flex-r-nw;
+
+  align-items: flex-start;
+  box-sizing: border-box;
+  margin-bottom: $mat-card-margin;
+  padding-bottom: 0;
+  padding-top: 2rem;
+
+  &__content-wrapper {
+    &_big {
+      align-self: flex-end;
+      flex: 85%;
+
+      @media (max-width: 769px) {
+        flex: 60%;
+      }
+    }
+
+    &_small {
+      flex: 15%;
+
+      @media (max-width: 769px) {
+        flex: 40%;
+      }
+    }
+  }
+
+  &__paragraph {
+    box-sizing: border-box;
+
+    &_date {
+      font-size: 14px;
+      color: grey;
+    }
+
+    &_price {
+      font-weight: 500;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+    }
+
+    &_name {
+      font-size: 18px;
+      font-weight: bolder;
+    }
+  }
+}
+
+.list {
+  //subject to partial deletion
+  padding: 0;
+
+  &__item {
+    @include grey-paragraph;
+
+    &_theme-details {
+      display: flex;
+    }
+
+    &_theme-description {
+      padding-left: 16px;
+      list-style-position: inside;
+    }
+  }
+
+  &__span {
+    &_theme-name {
+      flex: 2;
+    }
+
+    &_theme-value {
+      flex: 6;
+    }
+  }
+
+  &_theme-details {
+    box-sizing: border-box;
+    list-style: none;
+  }
+
+  &_theme-description {
+    list-style: disc;
+  }
+}
+
+h3 {
+  font-size: $headers-font-size;
+}
+
+table {
+  padding-bottom: 2vh;
+}
+
+caption {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  font-size: $headers-font-size;
+  margin: 2vh auto;
+}
+
+::ng-deep .mat-row,
+td.mat-cell {
+  border: none;
+  box-shadow: none;
+  height: auto !important; //!!! using important
+  padding-bottom: 0.5vh;
+}
+
+::ng-deep .mat-cell {
+  padding-right: 16px !important;
+}
+
+@media screen and (max-width: calc(768px)) {
+  .slider-container {
+    flex-flow: column nowrap;
+    height: auto;
+
+    &__slider-wrapper {
+      position: relative;
+      width: 100%;
+      height: $slider-container-height;
+      margin-bottom: $mat-card-margin;
+    }
+
+    &__user-wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}
+
+.button-to-open-review-modal {
+  display: block;
+  margin-top: 1rem;
+  width: 100%;
+  background-color: white;
+  padding: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+app-star-wrapper {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+
+  @media (max-width: 769px) {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.favorite-button {
+  position: absolute;
+  right: 1em;
+  top: 0.7em;
+  z-index: 2;
+}
+
+.base-price {
+  margin-top: 0.3rem;
+  font-size: 1rem;
+  color: rgb(178 177 177);
+}
+
+.discount-price {
+  color: #454545;
+  font: 400 1.3rem Roboto, "Helvetica Neue", sans-serif;
+}
+
+.percentage {
+  position: absolute;
+  top: 1rem;
+  left: 30%;
+  padding: 0.4rem 0.8rem;
+  border: 3px solid white;
+  border-radius: 1.2rem;
+  background-color: rgb(192 35 35);
+  color: white;
+  font-weight: 500;
+  z-index: 5;
+  font-size: 1.2rem;
+
+  @media (max-width: 769px) {
+    left: 1rem;
+  }
+}

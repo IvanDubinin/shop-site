@@ -1,0 +1,22 @@
+<mat-menu xPosition="before">
+  <button mat-menu-item routerLink="/home/profile">
+    <mat-icon color="primary">home</mat-icon>
+    <span>My profile</span>
+  </button>
+  <button mat-menu-item routerLink="/home/profile/wishlist">
+    <mat-icon color="primary">favorite</mat-icon>
+    <span>My wishlist</span>
+  </button>
+  <button mat-menu-item routerLink="/home/profile/orders">
+    <mat-icon color="primary">inventory</mat-icon>
+    <span>My orders</span>
+  </button>
+  <button mat-menu-item routerLink="/home/profile/address-book">
+    <mat-icon color="primary">import_contacts</mat-icon>
+    <span>My address book</span>
+  </button>
+  <button mat-menu-item (click)="logOut()">
+    <mat-icon color="primary">meeting_room</mat-icon>
+    <span>Log out</span>
+  </button>
+</mat-menu>

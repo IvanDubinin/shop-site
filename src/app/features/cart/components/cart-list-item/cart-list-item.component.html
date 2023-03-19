@@ -1,0 +1,31 @@
+<div class="cart_item">
+  <ng-content></ng-content>
+  <mat-card>
+    <mat-card-content>
+      <div class="img">
+        <div *ngIf="discountPercentage" ngClass="percentage">{{ discountPercentage }}%</div>
+        <img class="mat-card__img" [src]="product.images[0]" [alt]="product.name + ' photo'" />
+      </div>
+      <div class="title">
+        <a ngClass="mat-card-title__link" [title]="'click to view ' + product.name + ' page'"
+                           [routerLink]="['/home/products/', product.id]"><span>{{ product.name }}</span></a>
+      </div>
+      <div class="discount-price">
+        {{ product.discountPrice | currency: 'USD':'symbol':'0.1-1' | customCurrency }}
+      </div>
+      <div class="base-price">
+        <s>{{ product.price | currency: 'USD':'symbol':'0.1-1' | customCurrency }}</s>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <app-add-to-cart [product]="product" [productIsChecked]="productIsChecked" [isOnCartPage]="true">
+      </app-add-to-cart>
+    </mat-card-actions>
+    <div class="icon_large_screen">
+      <mat-icon (click)="openDialog()">delete</mat-icon>
+    </div>
+  </mat-card>
+  <div class="icon_small_screen">
+    <mat-icon (click)="openDialog()">delete</mat-icon>
+  </div>
+</div>

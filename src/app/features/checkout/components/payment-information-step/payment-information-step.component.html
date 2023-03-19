@@ -1,0 +1,37 @@
+<div class="payment-step-container">
+  <img src="https://toplogos.ru/images/thumbs/preview-logo-mir.png"  alt="Логотип Мир" class="payment-system-logo" />
+  <form (ngSubmit)="onSubmit()" [formGroup]="form" class="payment-form-container">
+
+    <mat-form-field appearance="standard" class="card-number-input">
+      <mat-label>Card Number</mat-label>
+      <input type="text" mask="XXXX XXXX XXXX XXXX" matInput formControlName="cardNumber"/>
+      <mat-hint>Enter digits without spaces</mat-hint>
+      <mat-error *ngIf="cardNumber.touched && cardNumber.hasError('required')">
+        Card Number is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="exp-date_input">
+      <mat-label>Expiration date</mat-label>
+      <input type="text" matInput mask="XX/XX" formControlName="expirationDate"/>
+      <mat-hint>Enter card expiration date in mm/yy format</mat-hint>
+      <mat-error *ngIf="expirationDate.touched && expirationDate.hasError('required')">Expiration Date is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="cvv_input">
+      <mat-label>CVV</mat-label>
+      <input type="text" matInput mask="XXX" formControlName="cvv"/>
+      <mat-hint>Last three digits on the card back</mat-hint>
+      <mat-error *ngIf="cvv.touched && cvv.hasError('required')">CVV is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard">
+      <mat-label>Card Holder</mat-label>
+      <input type="text" matInput formControlName="name" class="name_input">
+      <mat-hint>Leave the field blank if card has no name</mat-hint>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" type="submit" class="proceed-btn" type="submit" [disabled]="form.invalid">Pay {{orderPrice | currency: 'USD':'symbol':'0.1-1' | customCurrency}}</button>
+
+  </form>
+</div>

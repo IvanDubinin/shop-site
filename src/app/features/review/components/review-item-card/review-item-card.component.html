@@ -1,0 +1,21 @@
+<mat-card class='card'>
+  <h1 class='title'>{{review.author}} ({{review.updatedAt | date:'dd.MM.yyyy hh:mm:ss'}})</h1>
+  <p class='rating'>
+    <rating-stars [isActive]='false' [rating]='review.rating'></rating-stars>
+  </p>
+  <div *ngIf='isOwnComment' class='button-container'>
+    <button class='icon-button' mat-icon-button (click)='onReviewUpdated()'><span class='material-icons'>edit</span></button>
+    <button class='icon-button' mat-icon-button (click)='onReviewDeleted()'><span class='material-icons'>delete</span></button>
+  </div>
+  <p>
+    {{shownComment}}
+    <button
+      mat-button
+      (click)='onMoreOrLessClick()'
+      *ngIf='canShowMoreOrLess'
+      class='read-more'
+    >
+      Read {{isCommentShownFull ? 'less' : 'more'}}
+    </button>
+  </p>
+</mat-card>

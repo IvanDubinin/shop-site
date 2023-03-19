@@ -1,0 +1,78 @@
+@mixin reset-default-styles {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  color: grey;
+
+  &__delivery-message {
+    @include reset-default-styles;
+
+    text-align: center;
+  }
+
+  &__button {
+    @include reset-default-styles;
+
+    text-decoration: underline;
+    cursor: pointer;
+    color: inherit;
+    background-color: transparent;
+
+    &_style-edit {
+      width: 25px;
+    }
+  }
+
+  &__proceed-button {
+    text-transform: uppercase;
+    width: 100%;
+  }
+
+  &__credential-strings {
+    padding: 1rem;
+  }
+
+  &_main {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+  }
+
+  &_radio {
+    position: relative;
+    min-height: 100%;
+    width: 100%;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &_single-radio-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 50px;
+  }
+
+  &_selected-radio-container {
+    color: blue;
+  }
+}
+
+.mat-radio-button {
+  flex: 80%;
+
+  &:checked * {
+    background-color: red;
+  }
+}
+
+::ng-deep .mat-radio-label {
+  white-space: normal !important;
+  padding: auto 0.5rem;
+}

@@ -1,0 +1,156 @@
+.mat-card-container {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+::ng-deep .mat-content {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.confirm-payment-btn {
+  margin-left: 0.25rem;
+}
+
+.chip {
+  color: #fff;
+  background-color: #00bd55;
+  border-radius: 16px;
+  padding: 5px;
+}
+
+.title-and-status {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  @media (min-width: 770px) {
+    width: 80%;
+  }
+
+  &_title {
+    font-weight: 500;
+  }
+
+  &_status {
+    margin-left: 1rem;
+  }
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between !important;
+  align-items: center;
+}
+
+.mat-card__container {
+  width: 100%;
+}
+
+.order-price {
+  font-size: 14px;
+  margin: 0 1rem 0 0;
+  font-weight: 500;
+}
+
+mat-expansion-panel-header {
+  background-color: #eaeaea;
+}
+
+.panel-container ::ng-deep .mat-expansion-panel-body {
+  padding: 0 !important;
+}
+
+.mat-card__description-and-slider {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+  align-items: center;
+}
+
+.mat-card__description {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-card__slider {
+  width: 40%;
+  margin-right: 80px;
+}
+
+@media (max-width: 769px) {
+  .mat-card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .panel-container {
+    ::ng-deep .mat-chip.mat-standard-chip {
+      border-radius: 50%;
+      min-height: 24px;
+    }
+
+    ::ng-deep .mat-chip-list-wrapper {
+      margin: 0 2rem 0 0 !important;
+    }
+
+    ::ng-deep .mat-expansion-panel-header {
+      height: 100%;
+    }
+  }
+
+  .mat-card__description-and-slider {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    align-items: center;
+  }
+
+  .mat-card__slider {
+    width: 80%;
+    margin-top: 1rem;
+    margin-right: 40px;
+  }
+
+  .confirm-payment-btn {
+    margin-left: 0;
+    margin-top: 0.25rem;
+  }
+
+  .chip {
+    display: none;
+    background-color: #9d9d9d;
+  }
+
+  .chip-mobile {
+    background-color: #00bd55;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+  }
+
+  .order-header {
+    padding: 0.25rem 1rem;
+  }
+
+  .order-price {
+    text-align: right;
+    margin: 0 0.25rem 0 0;
+    width: 50%;
+    font-size: 14px;
+  }
+
+  .title-and-status {
+    width: 100%;
+    margin-right: 0.25rem;
+    font-weight: 500;
+
+    &_status {
+      width: 3rem;
+    }
+  }
+}

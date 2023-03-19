@@ -1,0 +1,36 @@
+<div ngClass="wrapper-root">
+  <mat-card class="side-wrapper">
+    <div class="side-wrapper__container">
+      <div ngClass="side-wrapper__button">
+        <button mat-raised-button ngClass="swiper-custom-button-prev"></button>
+      </div>
+      <swiper #sideSwiper [config]="sideConfig">
+
+        <ng-template *ngFor="let image of product.images; let i = index" swiperSlide>
+          <div (click)="onSlideClicked($event,i)" [ngClass]="{'slider-div': true}">
+            <img ngClass="side-swiper-img" [src]="image">
+          </div>
+        </ng-template>
+      </swiper>
+      <div ngClass="side-wrapper__button">
+        <button mat-raised-button class="swiper-custom-button-next">
+        </button>
+      </div>
+    </div>
+  </mat-card>
+  <mat-card class="front-wrapper">
+    <div class="front-wrapper__container">
+      <swiper #frontSwiper [config]="frontConfig">
+        <ng-template *ngFor="let image of product.images; let i = index" swiperSlide>
+          <div ngClass="slider-div">
+            <img class="front-swiper-img" [src]="image">
+          </div>
+        </ng-template>
+      </swiper>
+    </div>
+    <div class="front-wrapper__pagination">
+      <div ngClass="swiper-pagination"></div>
+    </div>
+  </mat-card>
+
+</div>

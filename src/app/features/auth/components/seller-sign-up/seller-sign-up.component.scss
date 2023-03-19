@@ -1,0 +1,21 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputsContainer {
+  width: 90%;
+}
+
+.modalWindowButton {
+  width: 90%;
+  margin-top: 1rem;
+  text-transform: uppercase;
+}
+
+.notMatchingError {
+  align-self: start;
+  margin-left: 1.8rem;
+  margin-top: 0;
+}

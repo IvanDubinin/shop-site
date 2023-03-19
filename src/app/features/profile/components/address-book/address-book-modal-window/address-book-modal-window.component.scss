@@ -1,0 +1,33 @@
+@media screen and(max-width: 768px) {
+  .modalContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  h1 {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .modalContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+}

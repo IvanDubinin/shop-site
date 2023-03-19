@@ -1,0 +1,13 @@
+<div class="block__user">
+
+    <div class="user__name" *ngIf="user !== null">
+        {{ user.firstName }} {{ user.lastName }}
+    </div>
+
+    <div class="user__image">
+        <img *ngIf="user && user.picture" src="{{user.picture}}" alt="User's photo">
+        <mat-icon *ngIf="!user || !user.picture"> account_circle </mat-icon>
+    </div>
+
+
+</div>

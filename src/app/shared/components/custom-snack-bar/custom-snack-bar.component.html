@@ -1,0 +1,21 @@
+<mat-card class="main-bar">
+    <mat-card (mouseenter)="disableCardDisappear(message.key)"
+        (mouseleave)="setCardToDisappear(message.key, message.value.removeByTimeout, message.value.isKeptOpen)"
+        class="message-item" *ngFor="let message of messages$ | async | keyvalue; let i = index; trackBy: identifyNew"
+        [ngStyle]="{'bottom': message.key*cardSize[viewmode].height + message.key*cardSize[viewmode].gap + 'px',
+               'height': cardSize[viewmode].height + 'px', 'min-width': cardSize[viewmode].width + cardSize[viewmode].widthUnits,
+                'max-width':cardSize[viewmode].maxWidth +cardSize[viewmode].maxWidthUnits}" [@inOutAnimation]>
+        <mat-icon class="message-item__icon">{{icons[message.value.type!]}}</mat-icon>
+        <button class="message-item__button" (click)="close(message.key)" mat-raised-button color="primary">X</button>
+        <svg class="svg-background" [ngClass]="message.value.type">
+            <path d="M 100 0 Q 15 50 0 125 V 0 0 H 0 100" />
+        </svg>
+        <div class="message-item__title-container">
+            <h1 class="message-item__title">
+                {{message.value.title}}
+            </h1>
+        </div>
+
+        <p class="message-item__message">{{message.value.message}} </p>
+    </mat-card>
+</mat-card>

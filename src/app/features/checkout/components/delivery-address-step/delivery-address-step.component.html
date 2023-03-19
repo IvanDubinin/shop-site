@@ -1,0 +1,32 @@
+<div class="container container_main">
+    <app-delivery-address-form (formSubmit)="onProceed($event)" *ngIf="!isLoading && (addressList$ | async) === null ">
+    </app-delivery-address-form>
+    <div *ngIf="isLoading" class="spinner">Loading...</div>
+    <div *ngIf="(addressList$ | async) && !isLoading" class="container container_radio">
+        <p class="container__delivery-message">
+            Choose one from your address book or
+            <button (click)="addAddress()" type="button" title="add new address" class="container__button">add new
+                one</button>
+        </p>
+        <div>
+            <mat-radio-group [(ngModel)]="selectedRadio">
+                <div class="container container_single-radio-container"
+                    *ngFor="let address of addressList$ | async ; let i = index;"
+                    [ngClass]="{'container_selected-radio-container': address.id === selectedRadio?.id}">
+                    <mat-radio-button [value]="address" color="primary">
+                        <div class="container__credential-strings">
+                            <p>{{addressStrings[i].credentials}}</p>
+                            <p>{{addressStrings[i].location}}</p>
+                        </div>
+                    </mat-radio-button>
+                    <button type="button" title="edit address" class="container__button container__button_style-edit"
+                        (click)="editAddress(address)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </div>
+            </mat-radio-group>
+            <button class="container__proceed-button" (click)="onProceed()" [disabled]="!selectedRadio"
+                mat-raised-button color="primary">proceed</button>
+        </div>
+    </div>
+</div>

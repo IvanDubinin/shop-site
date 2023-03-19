@@ -1,0 +1,51 @@
+.some-text {
+  font-size: 20px;
+  text-align: center;
+  margin: 30px;
+}
+
+.address-book-container {
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.add-address-button {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.address-card {
+  width: 49%;
+  max-width: 49%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 2%;
+}
+
+@media screen and (max-width: 768px) {
+  .address-book-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .address-card {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 2%;
+  }
+}
+
+.no-addresses {
+  text-align: center;
+  color: gray;
+  font: 200 1.5rem Roboto, "Helvetica Neue", sans-serif;
+  margin: 3rem 0;
+}

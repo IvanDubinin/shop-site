@@ -1,0 +1,22 @@
+<div class="modalContainer">
+  <button class="closeButton" mat-icon-button mat-dialog-close="" color="primary">
+    <mat-icon>
+      close
+    </mat-icon>
+  </button>
+  <mat-tab-group
+    animationDuration="0ms"
+    mat-align-tabs="center"
+    [selectedIndex]="selected.value"
+    (selectedIndexChange)="selected.setValue($event)"
+  >
+    <mat-tab label="SIGN IN" tabindex="0">
+      <app-sign-in></app-sign-in>
+    </mat-tab>
+    <mat-tab label="SIGN UP" tabindex="1">
+      <app-sign-up *ngIf="!isSeller"></app-sign-up>
+      <app-seller-sign-up *ngIf="isSeller"></app-seller-sign-up>
+    </mat-tab>
+  </mat-tab-group>
+  <mat-slide-toggle [(ngModel)]="isSeller" color="primary" *ngIf="selected.value">I'm a seller</mat-slide-toggle>
+</div>

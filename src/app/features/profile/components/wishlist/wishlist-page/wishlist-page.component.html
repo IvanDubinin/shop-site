@@ -1,0 +1,23 @@
+<mat-accordion>
+  <mat-expansion-panel
+    [togglePosition]="'before'"
+    [expanded]='currentWishlist === i'
+    *ngFor='let wishlist of wishlists | async; index as i'
+    (opened)='showWishlist(i, wishlist)'
+  >
+    <mat-expansion-panel-header>
+      <app-wishlist-header
+        class='header'
+        [wishlist]='wishlist'
+        (rename)='updateWishlistName($event, wishlist)'
+        (delete)='deleteWishlist($event, i)'>
+      </app-wishlist-header>
+    </mat-expansion-panel-header>
+    <mat-panel-description>
+      <div class='container'>
+        <app-product-list *ngIf='wishlist.products.length > 0' [products]='(products | async)!' class='wishlist'></app-product-list>
+        <p *ngIf='wishlist.products.length === 0' class='no-products'>No liked products in this wishlist. Please consider to add something</p>
+      </div>
+    </mat-panel-description>
+  </mat-expansion-panel>
+</mat-accordion>

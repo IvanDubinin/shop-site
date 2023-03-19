@@ -1,0 +1,56 @@
+<div ngClass="container container_bread-crumbs">
+  <app-breadcrumb class="breadcrumb"></app-breadcrumb>
+</div>
+
+<div ngClass="container container_regular">
+
+  <mat-form-field color="basic" floatLable="never" appearance="outline" class="container__category">
+    <mat-label>Category</mat-label>
+    <mat-select [disableOptionCentering]="true" class="container__category-select"
+      (selectionChange)="onCategoryChanged($event)" [value]="params.category">
+      <mat-option [value]="''">All categories</mat-option>
+      <mat-option *ngFor="let category of categories$ | async" [value]="category.id">{{category.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="container__search">
+    <form (ngSubmit)="onSearchChanged()" class="container__search-form">
+      <mat-form-field class="container__search-form-field" appearance="outline">
+        <mat-label>search by product name or category</mat-label>
+        <input class="container__search-input" matInput [(ngModel)]="params.search" name="search"
+          [placeholder]="'search by product name or category'" autocomplete="off">
+      </mat-form-field>
+      <button class="container__search-button" type="submit" mat-raised-button color="primary">
+        <mat-icon>search</mat-icon>
+      </button>
+    </form>
+  </div>
+</div>
+
+<div ngClass="container container_toggle">
+  <app-toggle-for-view-mode class="toggleGroup" [viewMode]="viewMode" (dataChanged)="dataChangeHandler($event)">
+  </app-toggle-for-view-mode>
+
+  <div class="container__filters">
+    <mat-form-field appearance="outline" class="container__filter-select" floatLable="never">
+      <mat-label>Sorting</mat-label>
+      <mat-select (selectionChange)="onFilterChanged($event)" [(value)]="filterOptions.default">
+        <mat-option class="custom-option" *ngFor="let filter of filterOptions.names" [value]="filter">{{filter}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+
+<div *ngIf="totalCount" ngClass=" container items-count-display">Found: {{ totalCount }} items</div>
+<div class="emptySearch" *ngIf="!totalCount && productsAreLoaded">
+  <p>No products matching given criteria</p>
+  <button mat-stroked-button (click)="resetFilters()">Reset Filters</button>
+</div>
+
+<app-product-list [products]="products" [viewMode]="viewMode"></app-product-list>
+
+<app-pagination *ngIf="totalCount && itemsPerPage < totalCount" [totalCount]="totalCount" [itemsPerPage]="itemsPerPage"
+  [currentPage]="currentPage" (pageChanged)="onPageChanged($event)" (toPrevPage)="onPageChanged($event)"
+  (toNextPage)="onPageChanged($event)"></app-pagination>

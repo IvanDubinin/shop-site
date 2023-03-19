@@ -1,0 +1,14 @@
+@import "~swiper/scss";
+@import "~swiper/scss/navigation";
+@import "~swiper/scss/pagination";
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: rgb(80 80 80 / 10%);
+}

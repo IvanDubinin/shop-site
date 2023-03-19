@@ -1,0 +1,30 @@
+<div (click)="onRatingChange(i+1)" [ngClass]="{'passive': !isActive}" class="star-container"
+    *ngFor="let elem of starArray; let i = index">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
+        <defs *ngIf="partiallyPaintedStar.index === i">
+            <linearGradient [id]="partiallyPaintedStar.gradient1Id">
+                <stop offset="0%" class="stop-color" />
+                <stop [attr.offset]="(partiallyPaintedStar.gradientOffset)-0.1 + '%'" class="stop-color" />
+                <stop [attr.offset]="partiallyPaintedStar.gradientOffset + '%'" class="stop-color stop-color_default" />
+            </linearGradient>
+            <linearGradient [id]="partiallyPaintedStar.gradient2Id">
+                <stop offset="0%" class="stroke-stop-color" />
+                <stop [attr.offset]="(partiallyPaintedStar.gradientOffset)-0.1 + '%'" class="stroke-stop-color" />
+                <stop [attr.offset]="partiallyPaintedStar.gradientOffset + '%'"
+                    class="stroke-stop-color stroke-stop-color_filled" />
+            </linearGradient>
+        </defs>
+        <g>
+            <polygon class="polygon stroke" [ngClass]="{
+                    'polygon_filled'  : partiallyPaintedStar.index > i,
+                    'polygon_no-fill' : partiallyPaintedStar.index < i,
+                    'stroke_no-stroke': partiallyPaintedStar.index > i
+                }" [ngStyle]="{ 
+                'stroke': (partiallyPaintedStar.index === i) ? 'url(#' + partiallyPaintedStar.gradient2Id + ')' : '',
+                'fill':   (partiallyPaintedStar.index === i) ? 'url(#' + partiallyPaintedStar.gradient1Id + ')' : '' 
+                }" points="512,198.525 335.109,172.822 255.999,12.53 176.891,172.822 0,198.525 128,323.295 97.784,499.47 
+			255.999,416.293 414.216,499.47 384,323.295" />
+        </g>
+    </svg>
+</div>

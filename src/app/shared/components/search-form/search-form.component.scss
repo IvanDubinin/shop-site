@@ -1,0 +1,13 @@
+.search-form {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-raised-button.mat-primary.search-btn {
+  margin-bottom: 10px;
+}

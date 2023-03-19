@@ -1,0 +1,25 @@
+<div ngClass="user-avatar-container">
+  <div *ngIf="!userAvatar">
+    <span class="material-icons" ngClass="avatar-placeholder">
+      account_circle
+    </span>
+  </div>
+  <img *ngIf="userAvatar" [src]="userAvatar">
+  <label class="custom-file-upload" *ngIf="userIsConsumer() && !isInPreviewMode()"
+    [ngClass]="{'upload-btn-with-picture': userAvatar, 'upload-btn-with-placeholder' : !userAvatar }">
+    <input type="file" (change)="fileChangeEvent($event)" />
+    +
+  </label>
+</div>
+
+
+<div ngClass="preview-container" *ngIf="isInPreviewMode()">
+  <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1 / 1" format="png"
+    (imageCropped)="imageCropped($event)"></image-cropper>
+  <button mat-stroked-button color="primary" (click)="cancelCropping()">
+    CANCEL
+  </button>
+  <button mat-raised-button color="primary" (click)="uploadFiles()">
+    CROP
+  </button>
+</div>

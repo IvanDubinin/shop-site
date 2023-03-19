@@ -1,0 +1,93 @@
+$text-color: rgb(110 110 110);
+
+.modal-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.close-button {
+  align-self: end;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-container,
+.add-feedback-button {
+  display: block;
+  width: 90%;
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+h4,
+label {
+  font-weight: 400;
+  color: $text-color;
+  margin-left: 1.5rem;
+  margin-right: auto;
+
+  @media (max-width: 700px) {
+    margin-left: 1.1rem;
+  }
+}
+
+h4 {
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+label {
+  font-size: 0.7rem;
+  margin-bottom: -0.4rem;
+  z-index: 4;
+}
+
+.label-for-comment {
+  position: relative;
+  top: 0.4rem;
+  left: 0.3rem;
+  background-color: white;
+  padding: 0.2rem;
+  margin-bottom: -1.1rem;
+}
+
+select,
+option {
+  color: $text-color;
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid $text-color;
+  padding: 0.3rem;
+  outline: none;
+}
+
+select * {
+  color: $text-color;
+  font-size: 1.2em;
+}
+
+.rating-container {
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-right: auto;
+  margin-left: 1.3rem;
+  height: 1.7rem;
+  width: 60%;
+
+  @media (max-width: 700px) {
+    margin-left: 1.1rem;
+  }
+}
+
+.rating-in-words {
+  margin-left: 0.5rem;
+  color: $text-color;
+}

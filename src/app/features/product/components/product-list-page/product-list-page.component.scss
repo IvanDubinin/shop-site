@@ -1,0 +1,174 @@
+@import "../../../../../styles/variables";
+
+@mixin flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+$control-border: 0.5px solid rgb(128 128 128 / 47.9%);
+$header-footer-height: 64px;
+
+:host {
+  margin: 0 auto;
+  max-width: $container-max-width-900;
+  padding-top: 1vh;
+  display: block;
+  min-height: calc(100% - $header-footer-height * 2);
+  box-sizing: border-box;
+  width: 900px;
+}
+
+.breadcrumb {
+  padding-left: 0;
+
+  & ::ng-deep ol {
+    padding-left: 0;
+  }
+}
+
+.container {
+  position: relative;
+  width: 100%;
+
+  &__category {
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  &__category-select {
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: 0.5rem;
+  }
+
+  &__search {
+    width: 75%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__search-form-field {
+    width: 100%;
+  }
+
+  &__search-input {
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__search-form {
+    display: flex;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__search-button {
+    width: 51px;
+    margin-top: 0.25rem;
+    height: 51px;
+  }
+
+  &__mat-form-field {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border: none;
+    box-sizing: border-box;
+  }
+
+  &_toggle {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 60px;
+    column-gap: 1rem;
+  }
+
+  &__filter-select {
+    max-height: 80%;
+    box-sizing: border-box;
+  }
+
+  &__filters {
+    height: 100%;
+  }
+
+  &_regular {
+    @include flex-align-center;
+
+    justify-content: space-between;
+    margin-bottom: 2vh;
+  }
+}
+
+.items-count-display {
+  max-width: 900px;
+  display: flex;
+  justify-content: flex-start;
+  margin: auto;
+  color: #2069f1;
+  font-weight: bold;
+  margin-left: 0;
+}
+
+app-product-list {
+  width: 100%;
+}
+
+@media screen and (min-width: 769px) and (max-width: 1279px) {
+  :host {
+    max-width: 90%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  :host {
+    max-width: 90%;
+  }
+
+  .container {
+    &__category {
+      width: 100%;
+    }
+
+    &__search {
+      width: 100%;
+    }
+
+    &_regular {
+      flex-flow: column wrap;
+      justify-content: center;
+      margin-bottom: 2vh;
+    }
+
+    &__filters {
+      width: 100%;
+    }
+
+    &__filter-select {
+      width: 100%;
+    }
+
+    &_toggle {
+      margin-bottom: 2vh;
+    }
+  }
+
+  .toggleGroup {
+    display: none;
+  }
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  background: white;
+  border-radius: 5px;
+}
+
+.emptySearch {
+  margin-top: 5rem;
+  color: gray;
+  font: 300 24px Roboto, "Helvetica Neue", sans-serif;
+  text-align: center;
+}

@@ -1,0 +1,4 @@
+<ng-container *ngIf="products">
+  <app-product-item-card *ngFor="let product of products" [viewMode]="viewMode" [product]="product">
+  </app-product-item-card>
+</ng-container>

@@ -1,0 +1,66 @@
+<app-breadcrumb *ngIf="product"></app-breadcrumb>
+<app-page-not-found *ngIf="errorStatus"></app-page-not-found>
+
+<div ngClass="page-wrapper" *ngIf="product">
+    <mat-card ngClass="paragraph-container">
+        <div ngClass="paragraph-container__content-wrapper paragraph-container__content-wrapper_big">
+            <p ngClass="paragraph-container__paragraph paragraph-container__paragraph_name">{{product.name}}</p>
+            <p ngClass="paragraph-container__paragraph paragraph-container__paragraph_date">date: {{product.createdAt
+                |date: 'dd.MM.yyyy'}}</p>
+        </div>
+        <div ngClass="paragraph-container__content-wrapper paragraph-container__content-wrapper_small">
+            <p ngClass="paragraph-container__paragraph paragraph-container__paragraph_price discount-price">
+                {{product.discountPrice | currency:'USD' : 'symbol' : '0.1-1' | customCurrency}}
+            </p>
+            <p ngClass="paragraph-container__paragraph paragraph-container__paragraph_price base-price">
+                <s>{{product.price | currency:'USD' : 'symbol' : '0.1-1' | customCurrency}}</s>
+            </p>
+        </div>
+    </mat-card>
+    <div ngClass="slider-container ">
+        <div ngClass="slider-container__slider-wrapper">
+            <div *ngIf="discountPercentage" ngClass="percentage">{{ discountPercentage }}%</div>
+            <app-pdp-slider [product]="product"></app-pdp-slider>
+            <button class='icon-button favorite-button' mat-icon-button (click)='onFavoriteClick()'
+                *ngIf='userService.isConsumer()'>
+                <span class='material-icons' *ngIf='isFavorite' style='color: rgb(239, 48, 48)'>favorite</span>
+                <span class='material-icons' *ngIf='!isFavorite'>favorite_border</span>
+            </button>
+        </div>
+        <mat-card ngClass="slider-container__user-wrapper">
+            <app-star-wrapper [rating]="rating" [allowToEditRating]="!currentUser || !hasCurrentUserAReview"
+                (ratingChanged)="addReview($event)"></app-star-wrapper>
+            <app-add-to-cart [product]="product"></app-add-to-cart>
+            <app-current-user></app-current-user>
+        </mat-card>
+    </div>
+    <mat-card ngClass="content-container">
+        <table mat-table [dataSource]="product.details | keyvalue">
+            <caption> Product details</caption>
+            <ng-container matColumnDef="key">
+                <th mat-header-cell *matHeaderCellDef> Score </th>
+                <td mat-cell *matCellDef="let detail"> {{detail.key}} </td>
+            </ng-container>
+            <ng-container matColumnDef="value">
+                <th mat-header-cell *matHeaderCellDef> Score </th>
+                <td mat-cell *matCellDef="let detail"> {{detail.value}} </td>
+            </ng-container>
+
+            <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+        </table>
+
+        <h3>Product description</h3>
+        <ul ngClass="list list_theme-description">
+            <li ngClass="list__item_ list__item_theme-description " *ngFor="let para of product.description">
+                <span>{{para}}</span>
+            </li>
+        </ul>
+    </mat-card>
+
+    <button *ngIf="!currentUser || !hasCurrentUserAReview" mat-stroked-button color="primary"
+        ngClass="button-to-open-review-modal" (click)="addReview()">
+        {{reviewButtonTitle}}
+    </button>
+
+    <app-review-list [productId]='product.id'></app-review-list>
+</div>

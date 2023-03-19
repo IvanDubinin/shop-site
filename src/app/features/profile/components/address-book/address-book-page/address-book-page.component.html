@@ -1,0 +1,12 @@
+<div>
+  <div *ngIf="addresses && addresses.length; else no_addresses" class="address-book-container">
+    <app-address-card *ngFor="let address of addresses" [address]="address"
+                      class="address-card"
+                      (deleteAddress)="filterAddresses($event)">
+    </app-address-card>
+  </div>
+  <ng-template #no_addresses>
+    <div ngClass="no-addresses">No Addresses Yet</div>
+  </ng-template>
+</div>
+<button mat-raised-button color="primary" class="add-address-button" (click)="openDialog()">ADD ADDRESS</button>

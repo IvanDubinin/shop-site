@@ -1,0 +1,11 @@
+<div *ngIf="getAmountByProductId(product) === 0" class="cart cart__empty">
+    <button mat-button (click)="addToCart(product)">Add to cart</button>
+</div>
+
+<div class="cart cart__has">
+    <div *ngIf="getAmountByProductId(product) > 0" class="cart__buttons">
+        <button mat-button (click)="decreaseProduct(product)">-</button>
+        <div class="product__amount"> {{ getAmountByProductId(product) }} </div>
+        <button mat-button (click)="addToCart(product)">+</button>
+    </div>
+</div>

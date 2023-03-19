@@ -1,0 +1,244 @@
+@import "../../../../styles/variables";
+$button-arrow-color: c8c8c8; /* color in hex notation without # sign */
+
+:host {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  width: 100%;
+}
+
+.side-wrapper .swiper-slide {
+  cursor: pointer;
+}
+
+img {
+  height: 100%;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+::ng-deep .mat-card {
+  border-radius: 0 !important;
+}
+
+swiper {
+  height: 100%;
+  width: 100%;
+}
+
+.slider-div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.side-wrapper .slider-div {
+  box-sizing: border-box;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.wrapper-root {
+  position: relative;
+  height: 100%;
+  display: flex;
+}
+
+.front-wrapper {
+  box-sizing: border-box;
+  height: 100%;
+  flex: 73%;
+  max-width: 73%;
+  padding: 10px;
+
+  &__container {
+    position: relative;
+    width: 100%;
+    height: 80%;
+  }
+
+  &__pagination {
+    width: 100%;
+    height: 20%;
+  }
+}
+
+.side-wrapper {
+  flex: 20%;
+  height: 100%;
+  min-width: 150px;
+  box-sizing: border-box;
+
+  &__container {
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+    min-height: 100%;
+  }
+
+  &__button {
+    flex: 10%;
+    min-height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.side-wrapper ::ng-deep .swiper-slide-active > .slider-div {
+  border: 1px solid $mat-card-primary-color;
+}
+
+::ng-deep .swiper-pagination-bullet-active {
+  height: 10px;
+  width: 10px;
+  background: $mat-card-primary-color;
+  opacity: 1;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  width: 50px;
+  height: 20px;
+  top: 100%;
+  left: 50%;
+  transform: rotateZ(270deg);
+}
+
+.swiper-custom-button-prev {
+  transform: rotateZ(180deg);
+}
+
+.swiper-custom-button-prev,
+.swiper-custom-button-next {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background: 50% center/contain no-repeat transparent;
+  background-image: url('data:image/svg+xml;utf8,<svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="400" height="233.25" viewBox="0, 0, 400,233.25"><g id="svgg"><path id="path0" d="M97.985 50.007 C 86.378 51.366,79.859 63.935,85.151 74.750 L 86.314 77.125 102.368 93.250 C 111.198 102.119,134.066 125.108,153.185 144.338 C 172.305 163.567,188.494 179.696,189.161 180.180 C 194.708 184.197,203.484 184.543,209.685 180.988 C 211.219 180.109,210.898 180.429,279.772 111.198 L 313.668 77.125 314.840 74.750 C 322.067 60.096,307.274 44.597,292.625 51.473 C 289.878 52.763,288.361 54.242,244.140 98.740 C 219.949 123.083,200.085 143.000,200.000 143.000 C 199.914 143.000,180.051 123.083,155.859 98.739 C 131.668 74.396,111.202 53.966,110.379 53.339 C 106.852 50.652,102.491 49.480,97.985 50.007 " stroke="none" fill="%23#{$button-arrow-color}" fill-rule="evenodd"></path></g></svg>');
+
+  /* to change image fill color, use variable in the beginning of this file. */
+  &:hover {
+    background-color: white;
+  }
+
+  &:disabled {
+    animation: fade-and-hide 1s;
+    animation-fill-mode: forwards;
+  }
+
+  &:enabled {
+    animation: show-after-disable 1s;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+  }
+}
+
+::ng-deep .swiper-pagination {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.experimental-container {
+  height: 400px;
+  width: 90%;
+  margin: auto;
+  border: 1px solid black;
+}
+
+@media screen and (max-width: 768px) {
+  .front-wrapper {
+    position: relative;
+    flex: 70%;
+    height: 70%;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    &__pagination {
+      display: none;
+    }
+  }
+
+  .front-wrapper .slider-div {
+    cursor: grab;
+
+    &:active {
+      /* how to make that work? */
+      cursor: grabbing;
+    }
+  }
+
+  .side-wrapper {
+    position: relative;
+    flex: 30%;
+    height: 30%;
+    width: 100%;
+
+    &__container {
+      flex-flow: row nowrap;
+    }
+
+    &__button {
+      display: none;
+    }
+  }
+
+  .wrapper-root {
+    flex-flow: column-reverse nowrap;
+  }
+
+  .side-swiper-img {
+    height: auto;
+    max-height: 95%;
+    max-width: 100%;
+  }
+
+  .front-swiper-img {
+    max-width: 100%;
+  }
+}
+
+@keyframes show-after-disable {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  1% {
+    opacity: 0;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes fade-and-hide {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  99% {
+    opacity: 0;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

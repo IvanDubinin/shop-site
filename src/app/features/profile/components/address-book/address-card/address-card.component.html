@@ -1,0 +1,23 @@
+<mat-card class="address-card-container" *ngIf="address">
+  <button mat-icon-button class="delete-button" (click)="openConfirmationModal()">
+    <mat-icon>
+      close
+    </mat-icon>
+  </button>
+  <div>
+    <div class="address-card-paragraph">
+      <span>{{address.title}} {{address.name}} {{address.surname}}</span>
+      <br>
+      {{address.phone}}
+    </div>
+    <div class="address-card-paragraph">
+      <span>{{address.country}} , {{address.city}} </span>
+      <br>
+      <span>{{address.street}}, {{address.building}}, {{address.flat}}</span>
+    </div>
+    <div class="address-card-paragraph">
+      <span>{{address.zip}}</span>
+    </div>
+  </div>
+    <button mat-raised-button color="primary" class="edit-button" (click)="openDialog()">EDIT</button>
+</mat-card>

@@ -1,0 +1,52 @@
+$mat-card-primary-color: rgb(32 105 241);
+$padding-to-text: 0;
+$padding-to-rating: 16px;
+$padding-to-comment: 20px;
+
+mat-card {
+  position: relative;
+  padding-right: 80px;
+}
+
+.button-container {
+  position: absolute;
+  right: 0.5em;
+  top: 0.5em;
+  display: flex;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 0.3s;
+}
+
+mat-card:hover .button-container {
+  opacity: 1;
+}
+
+.title {
+  margin-bottom: $padding-to-rating;
+}
+
+.rating {
+  margin-bottom: $padding-to-comment;
+}
+
+.read-more {
+  text-transform: uppercase;
+  cursor: pointer;
+  color: $mat-card-primary-color;
+  padding: 0 $padding-to-text;
+}
+
+.icon-button {
+  opacity: 0.6;
+  transition-duration: 0.3s;
+  transition-property: opacity;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:active {
+    opacity: 0.3;
+  }
+}

@@ -1,0 +1,18 @@
+<div class='container'>
+  <div *ngIf='this.reviews.length === 0' ngClass='no-review'>
+    <span>There are no comments yet. Be the first to review</span>
+    <span class='material-icons smile'>sentiment_very_satisfied</span>
+  </div>
+  <div *ngIf='reviews.length > 0'>
+    <h1>Reviews</h1>
+    <ul>
+      <li *ngFor='let r of this.reviews'>
+        <app-review-item-card
+          [review]='r'
+          (reviewDeleted)='removeReview($event)'
+          (reviewUpdated)='updateReview($event)'>
+        </app-review-item-card>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="modal-container">
+  <button class="close-button" mat-icon-button mat-dialog-close="" color="primary">
+    <mat-icon>
+      close
+    </mat-icon>
+  </button>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <label>Your Name</label>
+    <div ngClass="input-container">
+      <select formControlName="name">
+        <option value="{{ user?.firstName }} {{ user?.lastName }}" selected>
+          {{ user?.firstName }} {{ user?.lastName }}
+        </option>
+        <option value="Anonymous">Anonymous</option>
+      </select>
+    </div>
+
+    <h4>Rating</h4>
+    <div ngClass="rating-container">
+      <div>
+        <rating-stars (ratingChanged)="setRating($event)"
+        [rating]="rating"
+        [setSelfRatingOnClick]="true"></rating-stars>
+      </div>
+      <div ngClass="rating-in-words">{{ getRatingInWords() }}</div>
+    </div>
+
+    <label ngClass="label-for-comment">Comment</label>
+    <mat-form-field appearance="outline" ngClass="input-container">
+      <textarea matInput placeholder="Min comment length: 30" rows="5" formControlName="comment">
+      </textarea>
+      <mat-error *ngIf="comment.touched && comment.invalid">
+        {{ getErrorEmail() }}
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" ngClass="add-feedback-button" [disabled]="!form.valid">
+      {{buttonName}}
+    </button>
+
+  </form>
+</div>

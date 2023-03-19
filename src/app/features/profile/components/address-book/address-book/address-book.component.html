@@ -1,0 +1,80 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="title_name_surname_container">
+    <mat-form-field appearance="standard" class="title_input">
+      <mat-label>Title</mat-label>
+      <mat-select formControlName="title" required="false">
+        <mat-option value="Mr.">Mr.</mat-option>
+        <mat-option value="Mrs.">Mrs.</mat-option>
+        <mat-option value="Ms.">Ms.</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="name_input">
+      <mat-label>Name</mat-label>
+      <input type="text" matInput formControlName="firstName" required="false" />
+      <mat-error *ngIf="firstName.touched && firstName.hasError('minlength')">First Name should be at least 2 characters
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="surname_input">
+      <mat-label>Surname</mat-label>
+      <input type="text" matInput formControlName="lastName" required="false" />
+      <mat-error *ngIf="lastName.touched && lastName.hasError('minlength')">Last Name should be at least 2 characters
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <mat-form-field appearance="standard" class="phone_input">
+    <mat-label>Phone</mat-label>
+    <input type="tel" matInput mask="+X (XXX) XXX XX XX" formControlName="phone" required="false" />
+  </mat-form-field>
+
+  <div class="country_city_container">
+    <mat-form-field appearance="standard" class="country_input">
+      <mat-label>Country</mat-label>
+      <input type="text" matInput [matAutocomplete]="auto_1" [formControl]="country"
+        (ngModelChange)="onCountrySelect($event)" formControlName="country" />
+      <mat-autocomplete #auto_1="matAutocomplete">
+        <mat-option *ngFor="let countryName of countryOptions | async" [value]="countryName.name">
+          <span>{{ countryName.name }}</span>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="city_input">
+      <mat-label>City</mat-label>
+      <input type="text" matInput [formControl]="city" [matAutocomplete]="auto_2" formControlName="city" />
+      <mat-autocomplete #auto_2="matAutocomplete">
+        <mat-option *ngFor="let option of cityOptions | async" [value]="option">
+          {{ option }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field appearance="standard" class="street_input">
+    <mat-label>Street</mat-label>
+    <input type="text" matInput formControlName="street" required="false" />
+  </mat-form-field>
+  <div class="building_flat_container">
+    <mat-form-field appearance="standard" class="building_input">
+      <mat-label>Building</mat-label>
+      <input type="text" matInput formControlName="building" required="false" />
+      <mat-error *ngIf="building.touched && building.hasError('pattern')">Building should be only numbers</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="flat_input">
+      <mat-label>Flat</mat-label>
+      <input type="text" matInput formControlName="flat" required="false" />
+      <mat-error *ngIf="flat.touched && flat.hasError('pattern')">Flat should be only numbers</mat-error>
+    </mat-form-field>
+  </div>
+  <mat-form-field appearance="standard" class="zip_input">
+    <mat-label>Zip</mat-label>
+    <input type="text" matInput formControlName="zip" required="false" />
+    <mat-error *ngIf="zip.touched && zip.hasError('minlength')">Zip should be at least 6 characters</mat-error>
+    <mat-error *ngIf="zip.touched && zip.hasError('pattern')">Zip should be only numbers</mat-error>
+  </mat-form-field>
+  <button mat-flat-button type="submit" class="modalWindowButton" color="primary" [disabled]="formIsInvalid()">
+    {{ addOrUpdate }}
+  </button>
+</form>

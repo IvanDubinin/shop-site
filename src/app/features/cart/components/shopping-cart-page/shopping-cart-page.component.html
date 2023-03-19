@@ -1,0 +1,51 @@
+<div ngClass="white-background-container">
+  <div ngClass="container container_bread-crumbs">
+    <app-breadcrumb></app-breadcrumb>
+  </div>
+  <div ngClass="container container_title-and-button">
+    <h1>Cart</h1>
+    <button *ngIf="!cartIsEmpty()" mat-stroked-button color="basic" (click)="openDialog()">EMPTY
+      CART</button>
+  </div>
+  <ng-container *ngIf="!cartIsEmpty()">
+    <div ngClass="container container_empty-button">
+    </div>
+
+    <app-cart-list-wrapper [mapOfProducts]="mapOfProducts">
+    </app-cart-list-wrapper>
+
+    <div ngClass="container container_price-and-button">
+      <div ngClass="price-and-discount">
+        <div>Discounts:</div>
+        <div class="string-with-border-bottom">
+          <div>General Discounts:</div>
+          <div>{{ allPrices.generalDiscount
+            | currency: 'USD':'symbol':'0.1-1' | customCurrency}}
+          </div>
+        </div>
+        <div>
+          <div>Personal Discounts:</div>
+          <div>{{ allPrices.personalDiscount
+            | currency: 'USD':'symbol':'0.1-1' | customCurrency }}
+          </div>
+        </div>
+        <div ngClass="total-price">
+          <div>Total: </div>
+          <div>
+            {{ allPrices.finalPrice | currency: 'USD':'symbol':'0.1-1' | customCurrency}}
+          </div>
+        </div>
+
+      </div>
+      <button mat-raised-button color="primary" (click)="createAnOrder()" [disabled]="productsForOrder.length === 0">BUY NOW</button>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="cartIsEmpty()">
+    <div ngClass="container container_not-found-text">
+      <p class="text-not-found">No one product has been added to the cart yet :( <br>
+        Start <a routerLink="/home/products"
+          [queryParams]="{sort: 'updatedAt', order: 'asc', limit: 6, page: 1}">searching</a>
+      </p>
+    </div>
+  </ng-container>
+</div>

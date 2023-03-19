@@ -1,0 +1,35 @@
+<header class='wishlist-header'>
+  <h1>Choose wishlist</h1>
+  <button name='close' class='close-button' mat-icon-button mat-dialog-close='' color='primary'>
+    <mat-icon>
+      close
+    </mat-icon>
+  </button>
+</header>
+<ul class='wishlist-checklist'>
+  <li *ngFor='let wl of wishlists | async'>
+    <mat-checkbox
+      class='group-checkbox'
+      [checked]='isAdded(wl)'
+      [color]="'primary'"
+      (change)='selected(wl)'
+    >{{wl.name}}</mat-checkbox>
+  </li>
+</ul>
+<footer class='wishlist-footer'>
+  <button name='add' class='add-button' mat-button *ngIf='!isFormShown' (click)='showForm()'>
+    <mat-icon>add</mat-icon>
+    <span>Add new wishlist</span>
+  </button>
+  <form [formGroup]='form' (ngSubmit)='submit()' class='new-wishlist-form' *ngIf='isFormShown'>
+    <mat-form-field appearance='standard'>
+      <mat-label>Name</mat-label>
+      <input type='text' matInput formControlName='newWishlistName' placeholder='Type the name of new wishlist'>
+      <mat-error *ngIf="newWishlistName.touched && newWishlistName.hasError('required')">Name is required</mat-error>
+      <mat-error *ngIf="newWishlistName.touched && newWishlistName.hasError('minlength')">Name should be at least 3 characters</mat-error>
+      <mat-error *ngIf="newWishlistName.touched && newWishlistName.hasError('maxlength')">Name should not be longer than {{MAX_WISHLIST_LENGTH}} characters</mat-error>
+    </mat-form-field>
+    <label class='typed-characters'>{{typedCharacters}}</label>
+    <button mat-button type='submit' class='create-button' color='primary' [disabled]='!form.valid'>create</button>
+  </form>
+</footer>

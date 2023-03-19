@@ -1,0 +1,10 @@
+<ng-container *ngIf="products">
+  <mat-checkbox class="group-checkbox" [checked]="allChecked" [color]="'primary'" [indeterminate]="someChecked"
+    (change)="setAll($event.checked)">{{sellerName}}</mat-checkbox>
+  <app-cart-list-item *ngFor="let product of sortProductsByAddingTime()" [product]="product"
+    [productIsChecked]="productIsChecked(product.id)">
+    <mat-checkbox class="single-checkbox" [(ngModel)]="cart[product.id].checked" [color]="'primary'"
+      (ngModelChange)="updateChecking()" (change)="setSingle(product.id, $event.checked)">
+    </mat-checkbox>
+  </app-cart-list-item>
+</ng-container>

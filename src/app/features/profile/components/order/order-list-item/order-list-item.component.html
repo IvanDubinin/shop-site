@@ -1,0 +1,52 @@
+<mat-accordion>
+  <mat-expansion-panel [expanded]="expanded" class="panel-container">
+    <mat-expansion-panel-header class="order-header">
+      <div class="title-and-status">
+        <div class="title-and-status title-and-status_title">
+          Ordered on {{order.createdAt | date: 'd MMMM yyyy' }}
+        </div>
+        <div class="title-and-status title-and-status_status">
+          <div class="chip" [ngStyle]="{'background-color': changeStyle(order.status)}">
+            {{order.status | customStatus}}
+          </div>
+          <div class="chip-mobile" [ngStyle]="{'background-color': changeStyle(order.status)}"
+            title="{{order.status | customStatus}}">
+          </div>
+        </div>
+      </div>
+      <div class="order-price">
+        {{order.totalPrice | currency: 'USD':'symbol':'0.1-1' | customCurrency}}
+      </div>
+    </mat-expansion-panel-header>
+    <mat-card class="mat-card-container">
+      <div class="mat-card__description-and-slider">
+        <div class="mat-card__description">
+          <div style="margin-bottom: 0.5rem">
+            <strong>Delivery type: </strong>
+            <span>{{order.deliveryType}}</span>
+          </div>
+          <div>
+            <strong>Delivery address: </strong>
+            <span *ngIf="order.deliveryAddress?.country">  {{order.deliveryAddress?.country}}, {{order.deliveryAddress?.city}} <br>
+              {{order.deliveryAddress?.street}}, {{order.deliveryAddress?.building}} - {{order.deliveryAddress?.flat}},
+              {{order.deliveryAddress?.zip}}
+            </span>
+
+          </div>
+        </div>
+        <div class="mat-card__slider">
+          <app-swiper-for-order-card [arrayOfImages]="arrayOfImages"></app-swiper-for-order-card>
+        </div>
+      </div>
+      <button *ngIf="order.status !== 'DELIVERED'" mat-flat-button color="primary" (click)="handleStatus(order.status)">
+        {{changeButtonVersion(order.status)}}
+      </button>
+      <button *ngIf="order.status === 'DELIVERED'" mat-stroked-button disabled>
+        Delivered on {{order.deliveredAt | date: 'd MMMM yyyy' }}
+      </button>
+      <button mat-flat-button color="accent" *ngIf="order.status === 'WAITING_FOR_PAYMENT'" (click)="confirmPayment()" class="confirm-payment-btn">
+        CONFIRM PAYMENT
+      </button>
+    </mat-card>
+  </mat-expansion-panel>
+</mat-accordion>

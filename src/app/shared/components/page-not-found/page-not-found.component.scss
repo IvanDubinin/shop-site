@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Smooch+Sans");
+
+.error-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column wrap;
+  color: rgb(88 88 88);
+
+  h2 {
+    font-family: "Smooch Sans", sans-serif;
+    font-weight: bold;
+    font-size: 2.4rem;
+
+    @media (max-width: 700px) {
+      font-size: 1.7rem;
+    }
+  }
+
+  p {
+    margin-top: -0.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+}
+
+.error-image {
+  height: 33rem;
+  width: 33rem;
+
+  @media (max-width: 700px) {
+    height: 20rem;
+    width: 20rem;
+    margin-top: 25%;
+  }
+}
+
+.white-background {
+  min-height: 100vh;
+  background-color: whitesmoke;
+}

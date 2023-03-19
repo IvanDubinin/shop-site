@@ -1,0 +1,44 @@
+<div class="form-container">
+  <app-upload-image [user]="user"></app-upload-image>
+
+  <form class="form" [formGroup]="profileForm" novalidate (ngSubmit)="onSubmit()" #formDirective="ngForm">
+    <mat-form-field appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName" placeholder="Enter your first name">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastName" placeholder="Enter your last name">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" placeholder="Enter your title">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Gender</mat-label>
+      <input matInput formControlName="gender" placeholder="Enter your gender">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Date of Birth</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Phone Number</mat-label>
+      <input matInput mask="+X (XXX) XXX XX XX" formControlName="phoneNumber" placeholder="Enter your phone number">
+      <mat-error *ngIf="profileForm.controls['phoneNumber'] && profileForm.controls['phoneNumber'].hasError('pattern')">
+        Phone Number must be valid</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName="email" placeholder="Enter your email">
+      <mat-error *ngIf="profileForm.controls['email'] && profileForm.controls['email'].hasError('email')">Email must be
+        valid</mat-error>
+    </mat-form-field>
+    <div class="btn-container">
+      <button type="submit" mat-stroked-button color="primary" [disabled]="!profileForm.valid">Save</button>
+      <button mat-stroked-button color="warn" (click)="onReset()">Cancel</button>
+    </div>
+  </form>
+</div>
